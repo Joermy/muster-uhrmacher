@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#000000">
+  <title>Atelier Kessler — Uhrmacherei in Peine</title>
+  <meta name="description" content="Revision, Reparatur und Restaurierung mechanischer Uhren. Meisterwerkstatt in Peine.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Geist-Variabel.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/basis.css">
+  <link rel="stylesheet" href="assets/css/raster.css">
+  <link rel="stylesheet" href="assets/css/komponenten.css">
+  <link rel="stylesheet" href="assets/css/bewegung.css">
+</head>
+<body>
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <header class="kopf">
+    <div class="innen kopf__innen">
+      <a class="marke" href="./" aria-label="Atelier Kessler, Startseite">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16V9.5M16 16l4.4 2.5" stroke="#5b9bff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Kessler <span class="marke__zusatz">Uhrmacherei</span>
+      </a>
+      <nav class="navi" aria-label="Hauptnavigation">
+        <a href="leistungen/">Leistungen</a>
+        <a class="navi__weg" href="#atelier">Atelier</a>
+        <a href="kontakt/">Kontakt</a>
+        <a class="knopf knopf--klein" href="kontakt/#termin">Termin</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="buehne" aria-hidden="true">
+    <img class="buehne__still" src="bilder/uhr-still-1000.webp" srcset="bilder/uhr-still-560.webp 560w, bilder/uhr-still-1000.webp 1000w" sizes="(max-width: 760px) 62vw, 440px" width="1000" height="972" alt="" fetchpriority="high">
+    <canvas class="buehne__canvas"></canvas>
+  </div>
+
+  <main id="inhalt">
+    <section class="held innen">
+      <div>
+        <p class="etikett">Meisterwerkstatt · Peine</p>
+        <h1 class="stahl">Zeit, in guten Händen.</h1>
+        <p class="held__lead">Revision, Reparatur und Restaurierung mechanischer Uhren — von Hand, an der eigenen Werkbank.</p>
+        <div class="held__knoepfe">
+          <a class="knopf" href="kontakt/#termin">Termin anfragen</a>
+          <a class="knopf knopf--leer" href="#zerlegt">So arbeiten wir</a>
+        </div>
+      </div>
+      <div class="held__fuss">
+        <span>Ortszeit Peine <span class="held__uhrzeit zahl" data-ortszeit>—</span></span>
+        <span data-status class="status">Öffnungszeiten</span>
+      </div>
+    </section>
+
+    <section class="zerlegt" id="zerlegt" aria-labelledby="zerlegt-titel">
+      <div class="zerlegt__kopf innen">
+        <p class="etikett">Die Revision</p>
+        <h2 id="zerlegt-titel" class="glanz">Jede Uhr wird einmal ganz zerlegt.</h2>
+      </div>
+      <ol class="kapitel innen">
+        <li class="kapitel__eintrag">
+          <div class="kapitel__text">
+            <span class="kapitel__nr">01 — Öffnen</span>
+            <h3>Boden ab, Werk raus.</h3>
+            <p>Gehäuse, Glas, Zifferblatt und Zeiger kommen getrennt in die Ablage. Ein einfaches Handaufzugswerk besteht schnell aus über hundert Teilen.</p>
+          </div>
+        </li>
+        <li class="kapitel__eintrag">
+          <div class="kapitel__text">
+            <span class="kapitel__nr">02 — Reinigen</span>
+            <h3>Altes Öl verlässt die Werkstatt.</h3>
+            <p>Alle Teile laufen durch ein mehrstufiges Reinigungsbad. Was verharzt ist, bremst die Unruh — und genau dort beginnt die Ungenauigkeit.</p>
+          </div>
+        </li>
+        <li class="kapitel__eintrag">
+          <div class="kapitel__text">
+            <span class="kapitel__nr">03 — Prüfen</span>
+            <h3>Jedes Rad unter der Lupe.</h3>
+            <p>Zähne, Zapfen und Lagersteine werden einzeln angesehen. Verschlissene Teile ersetzen wir — wenn es sie nicht mehr gibt, fertigen wir sie nach.</p>
+          </div>
+        </li>
+        <li class="kapitel__eintrag">
+          <div class="kapitel__text">
+            <span class="kapitel__nr">04 — Ölen</span>
+            <h3>Tropfen, kaum größer als ein Punkt.</h3>
+            <p>Jede Ölstelle bekommt das passende Öl in der passenden Menge. Zu viel ist genauso schlecht wie zu wenig.</p>
+          </div>
+        </li>
+        <li class="kapitel__eintrag">
+          <div class="kapitel__text">
+            <span class="kapitel__nr">05 — Regulieren</span>
+            <h3>Eine Woche unter Beobachtung.</h3>
+            <p>Auf der Zeitwaage wird der Gang in mehreren Lagen gemessen und eingestellt. Danach läuft die Uhr sieben Tage bei uns, bevor sie zurückgeht.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="flaeche flaeche--erste" aria-labelledby="leistungen-titel">
+      <div class="innen">
+        <div class="abschnitt-kopf">
+          <p class="etikett">Leistungen</p>
+          <h2 id="leistungen-titel" class="glanz">Vom Batteriewechsel bis zur Taschenuhr von 1910.</h2>
+        </div>
+
+        <div class="bento">
+          <article class="karte karte--breit auf">
+            <div class="karte__oben"><span class="etikett">Revision</span><span class="karte__preis">ab 290 € <small>inkl. MwSt.</small></span></div>
+            <p class="karte__gross blau zahl">7 Tage</p>
+            <h3>Gangprüfung nach jeder Revision.</h3>
+            <p>Komplett zerlegt, gereinigt, geölt und reguliert. Mit schriftlichem Messprotokoll und zwei Jahren Gewährleistung auf unsere Arbeit.</p>
+          </article>
+          <article class="karte auf" style="--verzoegerung:80ms">
+            <div class="karte__oben"><span class="etikett">Reparatur</span><span class="karte__preis">nach Angebot</span></div>
+            <h3>Steht, geht nach, klingt komisch.</h3>
+            <p>Wir sehen nach und sagen Ihnen vorher, was es kostet.</p>
+          </article>
+          <figure class="karte karte--bild bild auf" style="--verzoegerung:60ms;margin:0">
+            <img src="bilder/werk-raeder-560.webp" srcset="bilder/werk-raeder-560.webp 560w, bilder/werk-raeder-1120.webp 1120w" sizes="(max-width: 600px) 90vw, (max-width: 980px) 45vw, 400px" width="1120" height="1120" alt="Räderwerk einer mechanischen Uhr mit roten Lagersteinen" loading="lazy" decoding="async">
+            <figcaption class="karte__text" style="position:static;background:none;backdrop-filter:none;padding:28px;font-family:var(--schrift);text-transform:none;letter-spacing:0">
+              <span class="etikett">Restaurierung</span>
+              <h3 style="margin-top:10px">Alte Werke, neue Teile.</h3>
+            </figcaption>
+          </figure>
+          <article class="karte auf" style="--verzoegerung:120ms">
+            <div class="karte__oben"><span class="etikett">Batterie</span><span class="karte__preis">ab 15 €</span></div>
+            <h3>Während Sie warten.</h3>
+            <p>Inklusive Dichtungsprüfung bei wasserdichten Uhren.</p>
+          </article>
+          <article class="karte auf" style="--verzoegerung:180ms">
+            <div class="karte__oben"><span class="etikett">Dichtigkeit</span><span class="karte__preis">25 €</span></div>
+            <h3>Unter Druck geprüft.</h3>
+            <p>Bevor es ins Wasser geht — mit Ausdruck des Prüfergebnisses.</p>
+          </article>
+        </div>
+
+        <p style="margin-top:36px"><a class="pfeil-link" href="leistungen/">Alle Leistungen und Preise</a></p>
+      </div>
+    </section>
+
+    <section class="flaeche" style="padding-top:0" aria-label="Kennzahlen">
+      <div class="innen">
+        <div class="leiste">
+          <div class="auf"><span class="leiste__wert stahl zahl">1</span><span class="leiste__name">Meister, der Ihre Uhr selbst öffnet</span></div>
+          <div class="auf" style="--verzoegerung:100ms"><span class="leiste__wert stahl zahl">2</span><span class="leiste__name">Werkbänke, keine Fließbandarbeit</span></div>
+          <div class="auf" style="--verzoegerung:200ms"><span class="leiste__wert blau zahl">0 €</span><span class="leiste__name">für den Kostenvoranschlag</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flaeche" id="atelier" style="padding-top:0" aria-labelledby="atelier-titel">
+      <div class="innen">
+        <div class="abschnitt-kopf">
+          <p class="etikett">Das Atelier</p>
+          <h2 id="atelier-titel" class="glanz">Klein genug, um jede Uhr zu kennen.</h2>
+          <p>Jonas Kessler hat sein Handwerk in Glashütte gelernt und führt die Werkstatt seit 2016 allein. Wer eine Uhr bringt, spricht mit dem, der sie öffnet.</p>
+        </div>
+
+        <div class="galerie">
+          <figure class="bild auf" style="margin:0;aspect-ratio:3/2">
+            <img src="bilder/meister-lupe-1400.webp" srcset="bilder/meister-lupe-800.webp 800w, bilder/meister-lupe-1400.webp 1400w, bilder/meister-lupe-2000.webp 2000w" sizes="(max-width: 760px) 90vw, 820px" width="2000" height="1333" alt="Uhrmacher mit Lupenbrille prüft ein offenes mechanisches Uhrwerk" loading="lazy" decoding="async">
+            <figcaption>Werkbank 1</figcaption>
+          </figure>
+          <figure class="bild auf" style="margin:0;aspect-ratio:1/1;--verzoegerung:80ms">
+            <img src="bilder/werk-halter-560.webp" srcset="bilder/werk-halter-560.webp 560w, bilder/werk-halter-1120.webp 1120w" sizes="(max-width: 760px) 90vw, 400px" width="1120" height="1120" alt="Mechanisches Uhrwerk in einem Werkhalter auf einer blauen Ablage" loading="lazy" decoding="async">
+          </figure>
+          <figure class="bild auf" style="margin:0;aspect-ratio:1/1;--verzoegerung:140ms">
+            <img src="bilder/werk-sw-560.webp" srcset="bilder/werk-sw-560.webp 560w, bilder/werk-sw-1120.webp 1120w" sizes="(max-width: 760px) 90vw, 400px" width="1120" height="1400" alt="Schwarzweißaufnahme eines Uhrwerks in starker Vergrößerung" loading="lazy" decoding="async">
+          </figure>
+          <figure class="bild auf" style="margin:0;aspect-ratio:4/5">
+            <img src="bilder/detail-pinzette-560.webp" srcset="bilder/detail-pinzette-560.webp 560w, bilder/detail-pinzette-1120.webp 1120w" sizes="(max-width: 760px) 90vw, 500px" width="1120" height="1400" alt="Hände setzen mit einer Pinzette ein kleines Zahnrad ein" loading="lazy" decoding="async">
+            <figcaption>Feinarbeit</figcaption>
+          </figure>
+          <figure class="bild auf" style="margin:0;align-self:stretch;--verzoegerung:80ms">
+            <img src="bilder/werkzeug-1400.webp" srcset="bilder/werkzeug-700.webp 700w, bilder/werkzeug-1400.webp 1400w" sizes="(max-width: 760px) 90vw, 720px" width="1400" height="933" alt="Uhrmacherwerkzeug und Kleinteile in Kunststoffdosen auf einer Holzplatte" loading="lazy" decoding="async">
+            <figcaption>Werkzeug</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="flaeche" aria-label="Kundenstimme">
+      <figure class="stimme innen auf">
+        <blockquote class="stahl">„Die Taschenuhr meines Großvaters läuft wieder. Und ich weiß jetzt, warum sie stand.“</blockquote>
+        <figcaption>Martina S., Peine — nach einer Restaurierung</figcaption>
+      </figure>
+    </section>
+
+    <section class="flaeche" style="padding-top:0" aria-labelledby="besuch-titel">
+      <div class="innen zweispaltig">
+        <div class="abschnitt-kopf" style="margin:0">
+          <p class="etikett">Besuch</p>
+          <h2 id="besuch-titel" class="glanz">Kommen Sie vorbei.</h2>
+          <p>Uhren nehmen wir ohne Termin an. Für eine ausführliche Beratung zu einer Restaurierung lohnt sich ein fester Termin.</p>
+          <p style="margin-top:8px"><span class="status" data-status>Öffnungszeiten</span></p>
+        </div>
+        <div class="auf">
+          <dl class="zeiten">
+            <div data-tag="1"><dt>Montag</dt><dd>geschlossen</dd></div>
+            <div data-tag="2"><dt>Dienstag</dt><dd>09:30–13:00 · 14:30–18:00</dd></div>
+            <div data-tag="3"><dt>Mittwoch</dt><dd>09:30–13:00 · 14:30–18:00</dd></div>
+            <div data-tag="4"><dt>Donnerstag</dt><dd>09:30–13:00 · 14:30–18:00</dd></div>
+            <div data-tag="5"><dt>Freitag</dt><dd>09:30–13:00 · 14:30–18:00</dd></div>
+            <div data-tag="6"><dt>Samstag</dt><dd>10:00–14:00</dd></div>
+            <div data-tag="0"><dt>Sonntag</dt><dd>geschlossen</dd></div>
+          </dl>
+          <p style="margin-top:28px;font-size:var(--fs-lead);letter-spacing:-0.015em">Am Zeitweg 9<br>31224 Peine</p>
+          <div class="held__knoepfe" style="justify-content:flex-start">
+            <a class="knopf knopf--blau" href="kontakt/#termin">Termin anfragen</a>
+            <a class="knopf knopf--leer" href="leistungen/">Preise ansehen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fuss">
+    <div class="innen fuss__innen">
+      <div class="fuss__zeile">
+        <p>Atelier Kessler · Uhrmacherei · Am Zeitweg 9, 31224 Peine</p>
+        <ul>
+          <li><a href="leistungen/">Leistungen</a></li>
+          <li><a href="kontakt/">Kontakt</a></li>
+          <li><a href="impressum/">Impressum</a></li>
+          <li><a href="datenschutz/">Datenschutz</a></li>
+        </ul>
+      </div>
+      <p class="fuss__hinweis">Musterprojekt. Betrieb, Anschrift, Personen, Preise und Kundenstimme sind frei erfunden. Fotos: Unsplash, 3D-Modell: eigene Arbeit in Blender.</p>
+    </div>
+  </footer>
+
+  <script src="daten/inhalte.js" defer></script>
+  <script src="assets/js/bewegung.js" defer></script>
+  <script type="module" src="assets/js/uhr.js"></script>
+</body>
+</html>

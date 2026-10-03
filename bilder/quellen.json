@@ -1,0 +1,109 @@
+{
+ "lizenz": {
+  "quelle": "Unsplash",
+  "name": "Unsplash-Lizenz",
+  "url": "https://unsplash.com/license",
+  "hinweis": "Kostenfrei nutzbar, auch gewerblich, ohne Genehmigung und ohne Pflicht zur Namensnennung. Die Nennung erfolgt hier freiwillig. Nicht erlaubt: Weiterverkauf unveraenderter Kopien, Aufbau eines konkurrierenden Bilddienstes."
+ },
+ "bilder": [
+  {
+   "datei": "meister-lupe",
+   "slug": "Kav-8gHoocU",
+   "kid": "photo-1788125856697-04067c752525",
+   "autor": "Vanishing Point Images",
+   "profil": "https://unsplash.com/@vanishing_point_images",
+   "quelle": "https://unsplash.com/photos/Kav-8gHoocU",
+   "verhaeltnis": "3:2",
+   "breiten": [
+    800,
+    1400,
+    2000
+   ],
+   "alt": "Uhrmacher mit Lupenbrille prueft ein offenes mechanisches Uhrwerk"
+  },
+  {
+   "datei": "detail-pinzette",
+   "slug": "uOPjNgaxkwU",
+   "kid": "photo-1788125856799-20f4b0023947",
+   "autor": "Vanishing Point Images",
+   "profil": "https://unsplash.com/@vanishing_point_images",
+   "quelle": "https://unsplash.com/photos/uOPjNgaxkwU",
+   "verhaeltnis": "4:5",
+   "breiten": [
+    560,
+    1120
+   ],
+   "alt": "Haende setzen mit einer Pinzette ein kleines Zahnrad ein"
+  },
+  {
+   "datei": "werk-halter",
+   "slug": "v_m2UI6o_rE",
+   "kid": "photo-1788125856699-ddd59e4f24c6",
+   "autor": "Vanishing Point Images",
+   "profil": "https://unsplash.com/@vanishing_point_images",
+   "quelle": "https://unsplash.com/photos/v_m2UI6o_rE",
+   "verhaeltnis": "1:1",
+   "breiten": [
+    560,
+    1120
+   ],
+   "alt": "Mechanisches Uhrwerk in einem Werkhalter auf einer blauen Ablage"
+  },
+  {
+   "datei": "werkzeug",
+   "slug": "hxkKZR7CxSA",
+   "kid": "photo-1786501135828-6927a8612593",
+   "autor": "Ryan Ashby",
+   "profil": "https://unsplash.com/@rashbinder",
+   "quelle": "https://unsplash.com/photos/hxkKZR7CxSA",
+   "verhaeltnis": "3:2",
+   "breiten": [
+    700,
+    1400
+   ],
+   "alt": "Uhrmacherwerkzeug und Kleinteile in Kunststoffdosen auf einer Holzplatte"
+  },
+  {
+   "datei": "werk-nah",
+   "slug": "3dyDozzCORw",
+   "kid": "photo-1633451238042-85d93d267866",
+   "autor": "Lukas Tennie",
+   "profil": "https://unsplash.com/@luk10",
+   "quelle": "https://unsplash.com/photos/3dyDozzCORw",
+   "verhaeltnis": "3:2",
+   "breiten": [
+    700,
+    1400
+   ],
+   "alt": "Nahaufnahme eines geoeffneten Uhrwerks mit Raedern und Lagersteinen"
+  },
+  {
+   "datei": "werk-raeder",
+   "slug": "HmIwomthlWw",
+   "kid": "photo-1646724810360-abfa1bb76d6d",
+   "autor": "Олександр К",
+   "profil": "https://unsplash.com/@gidlark",
+   "quelle": "https://unsplash.com/photos/HmIwomthlWw",
+   "verhaeltnis": "1:1",
+   "breiten": [
+    560,
+    1120
+   ],
+   "alt": "Raederwerk einer mechanischen Uhr mit roten Lagersteinen"
+  },
+  {
+   "datei": "werk-sw",
+   "slug": "a-vYdevMehQ",
+   "kid": "photo-1712890933285-7a4371686947",
+   "autor": "Mario Mesaglio",
+   "profil": "https://unsplash.com/@seimesa",
+   "quelle": "https://unsplash.com/photos/a-vYdevMehQ",
+   "verhaeltnis": "4:5",
+   "breiten": [
+    560,
+    1120
+   ],
+   "alt": "Schwarzweissaufnahme eines Uhrwerks in starker Vergroesserung"
+  }
+ ]
+}
