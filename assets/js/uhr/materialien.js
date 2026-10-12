@@ -66,7 +66,7 @@ export async function materialienBauen({ stufe, renderer, schrift, fortschritt =
     envMapIntensity: 1.2,
   });
   M.Saphir_einfach = new THREE.MeshPhysicalMaterial({
-    name: "Saphir_einfach", color: 0xffffff, metalness: 0, roughness: 0, transparent: true, opacity: 0.12,
+    name: "Saphir_einfach", color: 0xffffff, metalness: 0, roughness: 0, transparent: true, opacity: 0.08,
     specularIntensity: 1, iridescence: 0.5, iridescenceIOR: 1.38, iridescenceThicknessRange: [140, 260], depthWrite: false,
   });
 

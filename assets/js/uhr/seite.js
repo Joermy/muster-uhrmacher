@@ -66,7 +66,7 @@ let erledigt = 0;
 let lenis = null;
 if (!reduziert) {
   lenis = new Lenis({ lerp: 0.085, smoothWheel: true, anchors: { offset: -40 }, autoRaf: false });
-  wurzel.classList.add("lenis-an");
+  wurzel.classList.add("weich-scroll");
 }
 
 function fortschritt() {
@@ -110,7 +110,11 @@ function overlays(p) {
 // ------------------------------------------------------------ Start
 
 async function start() {
-  if (!canvas || !window.WebGLRenderingContext) throw new Error("kein WebGL");
+  if (!canvas || !window.WebGL2RenderingContext) throw new Error("kein WebGL 2");
+  const probe = document.createElement("canvas").getContext("webgl2");
+  if (!probe) throw new Error("kein WebGL 2");
+  const verlieren = probe.getExtension("WEBGL_lose_context");
+  if (verlieren) verlieren.loseContext();
   const u = await uhrStarten({ canvas, fortschritt: laden, schrift: "Geist" });
   const { b, kamera, szene, lage, teile, werk, zerleger, studio, renderer } = u;
   const regie = regieBauen({ kamera, lage, teile });
@@ -132,7 +136,7 @@ async function start() {
   oeler.add(arm);
   const tropfen = new THREE.Mesh(
     new THREE.SphereGeometry(0.24, 32, 16),
-    new THREE.MeshPhysicalMaterial({ color: 0xffe9b0, metalness: 0, roughness: 0.02, transmission: 0.9, thickness: 0.2, ior: 1.47, clearcoat: 1, specularIntensity: 1 })
+    new THREE.MeshPhysicalMaterial({ color: 0xc98a2a, metalness: 0, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0, specularIntensity: 1, transparent: true, opacity: 0.88 })
   );
   tropfen.scale.set(1, 0.42, 1);
   if (anker) {

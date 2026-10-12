@@ -86,10 +86,16 @@ html:not(.js) .lader {
 /* --------------------------------------------------------------- Buehne */
 
 .buehne {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  inset: 0 0 auto 0;
   z-index: 0;
   pointer-events: none;
+  height: 100svh;
+}
+
+html.uhr-laeuft .buehne {
+  position: fixed;
+  inset: 0;
   height: 100lvh;
 }
 
@@ -733,4 +739,13 @@ html.uhr-laeuft .revision__schluss {
   html.uhr-laeuft .revision {
     height: 600vh;
   }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
 }

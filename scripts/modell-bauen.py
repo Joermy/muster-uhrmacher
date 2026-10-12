@@ -4,7 +4,7 @@ Baut das 3D-Modell der Kessler K-1 in Blender und exportiert es als GLB.
 
     pip install bpy
     python scripts/modell-bauen.py            # schreibt assets/modelle/uhr-roh.glb
-    npx gltfpack -i assets/modelle/uhr-roh.glb -o assets/modelle/uhr.glb -cc -kn -km -noq
+    npx gltfpack -i assets/modelle/uhr-roh.glb -o assets/modelle/uhr.glb -cc -kn -km -kv -vtf
 
 Masseinheit ist Millimeter. Uhrachse ist Z, das Zifferblatt zeigt nach +Z,
 12 Uhr liegt auf +Y, die Krone auf +X. Jedes Teil, das sich bewegt oder beim

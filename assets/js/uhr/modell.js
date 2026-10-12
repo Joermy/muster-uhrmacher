@@ -104,7 +104,8 @@ export function modellEinrichten(gltf, M, { stufe }) {
       const ersetzen = (m) => {
         let nm = m && m.name;
         if (name === "Boden" && nm === "Stahl_gebuerstet") nm = "Boden_gebuerstet";
-        if (nm === "Saphir" && stufe < 2) nm = "Saphir_einfach";
+        // Lichtbrechung kostet einen zweiten Renderdurchgang, nur auf starken Geraeten
+        if (nm === "Saphir" && stufe < 3) nm = "Saphir_einfach";
         return M[nm] || m;
       };
       netz.material = Array.isArray(netz.material) ? netz.material.map(ersetzen) : ersetzen(netz.material);
