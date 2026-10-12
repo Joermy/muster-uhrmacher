@@ -495,3 +495,17 @@
   color: var(--muted);
   font-size: 0.9375rem;
 }
+
+.karte__text--bild {
+  position: static;
+  background: none;
+  backdrop-filter: none;
+  padding: 28px;
+  font-family: var(--schrift);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.karte__text--bild h3 {
+  margin-top: 10px;
+}

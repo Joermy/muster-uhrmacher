@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#000000">
@@ -11,13 +11,28 @@
   <meta name="description" content="Revision, Reparatur und Restaurierung mechanischer Uhren. Meisterwerkstatt in Peine.">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Geist-Variabel.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/modelle/uhr.glb" as="fetch" crossorigin>
   <link rel="stylesheet" href="assets/css/basis.css">
   <link rel="stylesheet" href="assets/css/raster.css">
   <link rel="stylesheet" href="assets/css/komponenten.css">
   <link rel="stylesheet" href="assets/css/bewegung.css">
+  <link rel="stylesheet" href="assets/css/buehne.css">
+  <noscript><style>.lader { display: none !important; }</style></noscript>
 </head>
 <body>
   <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <div class="lader" role="presentation">
+    <div class="lader__inhalt">
+      <svg class="lader__ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="lader__spur" cx="60" cy="60" r="54" pathLength="100"/>
+        <circle class="lader__lauf" cx="60" cy="60" r="54" pathLength="100"/>
+        <g class="lader__teilung"></g>
+      </svg>
+      <p class="lader__marke" aria-hidden="true">Kessler</p>
+      <p class="lader__zeile" aria-hidden="true"><span>Werk wird aufgezogen</span><span class="lader__zahl zahl">000</span></p>
+    </div>
+  </div>
 
   <header class="kopf">
     <div class="innen kopf__innen">
@@ -35,69 +50,111 @@
   </header>
 
   <div class="buehne" aria-hidden="true">
-    <img class="buehne__still" src="bilder/uhr-still-1000.webp" srcset="bilder/uhr-still-560.webp 560w, bilder/uhr-still-1000.webp 1000w" sizes="(max-width: 760px) 62vw, 440px" width="1000" height="972" alt="" fetchpriority="high">
+    <img class="buehne__still" src="bilder/uhr-still-1000.webp" srcset="bilder/uhr-still-560.webp 560w, bilder/uhr-still-1000.webp 1000w" sizes="(max-width: 760px) 80vw, 560px" width="1000" height="1000" alt="" fetchpriority="high">
     <canvas class="buehne__canvas"></canvas>
   </div>
 
   <main id="inhalt">
-    <section class="held innen">
-      <div>
-        <p class="etikett">Meisterwerkstatt · Peine</p>
-        <h1 class="stahl">Zeit, in guten Händen.</h1>
+    <section class="held innen" aria-labelledby="held-titel">
+      <div class="held__text">
+        <p class="etikett held__etikett"><span class="punkt" aria-hidden="true"></span>Meisterwerkstatt · Peine</p>
+        <h1 id="held-titel" class="held__titel" data-zerlegen>Zeit, in guten Händen.</h1>
         <p class="held__lead">Revision, Reparatur und Restaurierung mechanischer Uhren — von Hand, an der eigenen Werkbank.</p>
         <div class="held__knoepfe">
-          <a class="knopf" href="kontakt/#termin">Termin anfragen</a>
-          <a class="knopf knopf--leer" href="#zerlegt">So arbeiten wir</a>
+          <a class="knopf knopf--magnet" href="kontakt/#termin">Termin anfragen</a>
+          <a class="knopf knopf--leer knopf--magnet" href="#zerlegt">So arbeiten wir</a>
         </div>
       </div>
       <div class="held__fuss">
         <span>Ortszeit Peine <span class="held__uhrzeit zahl" data-ortszeit>—</span></span>
         <span data-status class="status">Öffnungszeiten</span>
+        <span class="held__kaliber">Kaliber K-1 · Handaufzug · 28 800 A/h</span>
       </div>
+      <p class="held__hinweis" aria-hidden="true"><span class="held__hinweis-linie"></span><span class="held__hinweis-text">Ziehen zum Drehen</span></p>
     </section>
 
-    <section class="zerlegt" id="zerlegt" aria-labelledby="zerlegt-titel">
-      <div class="zerlegt__kopf innen">
-        <p class="etikett">Die Revision</p>
-        <h2 id="zerlegt-titel" class="glanz">Jede Uhr wird einmal ganz zerlegt.</h2>
+    <section class="revision" id="zerlegt" aria-labelledby="zerlegt-titel">
+      <div class="revision__buehne">
+        <div class="revision__kopf innen">
+          <p class="etikett">Die Revision</p>
+          <h2 id="zerlegt-titel">Jede Uhr wird einmal ganz zerlegt.</h2>
+          <p>Fünf Schritte an der Werkbank. Scrollen Sie mit — die Uhr zeigt jeden davon.</p>
+        </div>
+
+        <ol class="kapitel innen">
+          <li class="kapitel__eintrag" data-ab="0.09" data-bis="0.27" data-seite="links">
+            <div class="kapitel__text">
+              <span class="kapitel__nr"><b>01</b> Öffnen</span>
+              <h3>Boden ab, Werk frei.</h3>
+              <p>Der verschraubte Boden kommt mit dem Gehäuseschlüssel ab. Band, Glas, Zifferblatt und Zeiger gehen getrennt in die Ablage — ein Handaufzugswerk hat schnell über hundert Teile.</p>
+            </div>
+          </li>
+          <li class="kapitel__eintrag" data-ab="0.29" data-bis="0.45" data-seite="rechts">
+            <div class="kapitel__text">
+              <span class="kapitel__nr"><b>02</b> Reinigen</span>
+              <h3>Altes Öl verlässt die Werkstatt.</h3>
+              <p>Alle Teile laufen durch ein mehrstufiges Reinigungsbad. Was verharzt ist, bremst die Unruh — und genau dort beginnt die Ungenauigkeit.</p>
+            </div>
+          </li>
+          <li class="kapitel__eintrag" data-ab="0.47" data-bis="0.62" data-seite="links">
+            <div class="kapitel__text">
+              <span class="kapitel__nr"><b>03</b> Prüfen</span>
+              <h3>Jedes Rad unter der Lupe.</h3>
+              <p>Zähne, Zapfen und Lagersteine werden einzeln angesehen. Verschlissene Teile ersetzen wir — wenn es sie nicht mehr gibt, fertigen wir sie nach.</p>
+            </div>
+          </li>
+          <li class="kapitel__eintrag" data-ab="0.64" data-bis="0.79" data-seite="rechts">
+            <div class="kapitel__text">
+              <span class="kapitel__nr"><b>04</b> Ölen</span>
+              <h3>Tropfen, kaum größer als ein Punkt.</h3>
+              <p>Jede Ölstelle bekommt das passende Öl in der passenden Menge — mit einem Öler, dünner als eine Nadel. Zu viel ist genauso schlecht wie zu wenig.</p>
+            </div>
+          </li>
+          <li class="kapitel__eintrag" data-ab="0.81" data-bis="0.945" data-seite="links">
+            <div class="kapitel__text">
+              <span class="kapitel__nr"><b>05</b> Regulieren</span>
+              <h3>Eine Woche unter Beobachtung.</h3>
+              <p>Auf der Zeitwaage wird der Gang in mehreren Lagen gemessen und eingestellt. Danach läuft die Uhr sieben Tage bei uns, bevor sie zurückgeht.</p>
+              <div class="zeitwaage" aria-hidden="true">
+                <canvas></canvas>
+                <dl>
+                  <div><dt>Gang</dt><dd class="zahl" data-wert="gang">+23,6 s/d</dd></div>
+                  <div><dt>Amplitude</dt><dd class="zahl" data-wert="amplitude">226°</dd></div>
+                  <div><dt>Abfallfehler</dt><dd class="zahl" data-wert="abfall">0,9 ms</dd></div>
+                </dl>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+        <div class="beschriftungen" aria-hidden="true">
+          <div class="beschriftung" data-anker="Platte" data-ab="0.14" data-bis="0.27"><i></i><span>Dreiviertelplatine<small>Neusilber, Glashütter Streifenschliff</small></span></div>
+          <div class="beschriftung beschriftung--links" data-anker="Federhaus" data-ab="0.15" data-bis="0.27"><i></i><span>Sperrrad<small>Sonnenschliff</small></span></div>
+          <div class="beschriftung beschriftung--links" data-anker="Fh" data-ab="0.495" data-bis="0.555"><i></i><span>Federhaus<small>52 Stunden Gangreserve</small></span></div>
+          <div class="beschriftung" data-anker="Minutenrad" data-ab="0.5" data-bis="0.555"><i></i><span>Minutenrad<small>eine Umdrehung pro Stunde</small></span></div>
+          <div class="beschriftung" data-anker="Kleinboden" data-ab="0.505" data-bis="0.555"><i></i><span>Kleinbodenrad<small>vergoldet, 75 Zähne</small></span></div>
+          <div class="beschriftung beschriftung--links" data-anker="Sekundenrad" data-ab="0.51" data-bis="0.555"><i></i><span>Sekundenrad<small>trägt die kleine Sekunde</small></span></div>
+          <div class="beschriftung" data-anker="Ankerrad" data-ab="0.5" data-bis="0.625"><i></i><span>Ankerrad<small>15 Zähne, gehärteter Stahl</small></span></div>
+          <div class="beschriftung beschriftung--links" data-anker="Anker" data-ab="0.515" data-bis="0.625"><i></i><span>Anker<small>zwei Paletten aus Rubin</small></span></div>
+          <div class="beschriftung" data-anker="Chaton" data-ab="0.65" data-bis="0.79"><i></i><span>Lagerstein<small>Rubin im Goldchaton</small></span></div>
+          <div class="beschriftung" data-anker="Unruhrand" data-ab="0.82" data-bis="0.945"><i></i><span>Schraubenunruh<small>18 Regulierschrauben · 4 Hz</small></span></div>
+          <div class="beschriftung beschriftung--links" data-anker="Spirale" data-ab="0.83" data-bis="0.945"><i></i><span>Spirale<small>atmet achtmal pro Sekunde</small></span></div>
+          <div class="beschriftung beschriftung--links" data-anker="Kloben" data-ab="0.84" data-bis="0.945"><i></i><span>Unruhkloben<small>von Hand graviert</small></span></div>
+        </div>
+
+        <p class="zeitlupe" aria-hidden="true"><span></span>Zeitlupe</p>
+
+        <div class="revision__leiste" aria-hidden="true">
+          <span class="revision__lauf"></span>
+          <ol><li>Öffnen</li><li>Reinigen</li><li>Prüfen</li><li>Ölen</li><li>Regulieren</li></ol>
+        </div>
+
+        <div class="revision__schluss innen">
+          <p class="etikett">Nach sieben Tagen</p>
+          <h2>Wieder in der Zeit.</h2>
+          <p class="revision__daten zahl">+0,8 s/d · 296° Amplitude · 2 Jahre Gewährleistung</p>
+        </div>
       </div>
-      <ol class="kapitel innen">
-        <li class="kapitel__eintrag">
-          <div class="kapitel__text">
-            <span class="kapitel__nr">01 — Öffnen</span>
-            <h3>Boden ab, Werk raus.</h3>
-            <p>Gehäuse, Glas, Zifferblatt und Zeiger kommen getrennt in die Ablage. Ein einfaches Handaufzugswerk besteht schnell aus über hundert Teilen.</p>
-          </div>
-        </li>
-        <li class="kapitel__eintrag">
-          <div class="kapitel__text">
-            <span class="kapitel__nr">02 — Reinigen</span>
-            <h3>Altes Öl verlässt die Werkstatt.</h3>
-            <p>Alle Teile laufen durch ein mehrstufiges Reinigungsbad. Was verharzt ist, bremst die Unruh — und genau dort beginnt die Ungenauigkeit.</p>
-          </div>
-        </li>
-        <li class="kapitel__eintrag">
-          <div class="kapitel__text">
-            <span class="kapitel__nr">03 — Prüfen</span>
-            <h3>Jedes Rad unter der Lupe.</h3>
-            <p>Zähne, Zapfen und Lagersteine werden einzeln angesehen. Verschlissene Teile ersetzen wir — wenn es sie nicht mehr gibt, fertigen wir sie nach.</p>
-          </div>
-        </li>
-        <li class="kapitel__eintrag">
-          <div class="kapitel__text">
-            <span class="kapitel__nr">04 — Ölen</span>
-            <h3>Tropfen, kaum größer als ein Punkt.</h3>
-            <p>Jede Ölstelle bekommt das passende Öl in der passenden Menge. Zu viel ist genauso schlecht wie zu wenig.</p>
-          </div>
-        </li>
-        <li class="kapitel__eintrag">
-          <div class="kapitel__text">
-            <span class="kapitel__nr">05 — Regulieren</span>
-            <h3>Eine Woche unter Beobachtung.</h3>
-            <p>Auf der Zeitwaage wird der Gang in mehreren Lagen gemessen und eingestellt. Danach läuft die Uhr sieben Tage bei uns, bevor sie zurückgeht.</p>
-          </div>
-        </li>
-      </ol>
     </section>
 
     <section class="flaeche flaeche--erste" aria-labelledby="leistungen-titel">
@@ -110,7 +167,7 @@
         <div class="bento">
           <article class="karte karte--breit auf">
             <div class="karte__oben"><span class="etikett">Revision</span><span class="karte__preis">ab 290 € <small>inkl. MwSt.</small></span></div>
-            <p class="karte__gross blau zahl">7 Tage</p>
+            <p class="karte__gross blau zahl" data-zaehlen="7">7 Tage</p>
             <h3>Gangprüfung nach jeder Revision.</h3>
             <p>Komplett zerlegt, gereinigt, geölt und reguliert. Mit schriftlichem Messprotokoll und zwei Jahren Gewährleistung auf unsere Arbeit.</p>
           </article>
@@ -121,9 +178,9 @@
           </article>
           <figure class="karte karte--bild bild auf" style="--verzoegerung:60ms;margin:0">
             <img src="bilder/werk-raeder-560.webp" srcset="bilder/werk-raeder-560.webp 560w, bilder/werk-raeder-1120.webp 1120w" sizes="(max-width: 600px) 90vw, (max-width: 980px) 45vw, 400px" width="1120" height="1120" alt="Räderwerk einer mechanischen Uhr mit roten Lagersteinen" loading="lazy" decoding="async">
-            <figcaption class="karte__text" style="position:static;background:none;backdrop-filter:none;padding:28px;font-family:var(--schrift);text-transform:none;letter-spacing:0">
+            <figcaption class="karte__text karte__text--bild">
               <span class="etikett">Restaurierung</span>
-              <h3 style="margin-top:10px">Alte Werke, neue Teile.</h3>
+              <h3>Alte Werke, neue Teile.</h3>
             </figcaption>
           </figure>
           <article class="karte auf" style="--verzoegerung:120ms">
@@ -145,8 +202,8 @@
     <section class="flaeche" style="padding-top:0" aria-label="Kennzahlen">
       <div class="innen">
         <div class="leiste">
-          <div class="auf"><span class="leiste__wert stahl zahl">1</span><span class="leiste__name">Meister, der Ihre Uhr selbst öffnet</span></div>
-          <div class="auf" style="--verzoegerung:100ms"><span class="leiste__wert stahl zahl">2</span><span class="leiste__name">Werkbänke, keine Fließbandarbeit</span></div>
+          <div class="auf"><span class="leiste__wert stahl zahl" data-zaehlen="1">1</span><span class="leiste__name">Meister, der Ihre Uhr selbst öffnet</span></div>
+          <div class="auf" style="--verzoegerung:100ms"><span class="leiste__wert stahl zahl" data-zaehlen="2">2</span><span class="leiste__name">Werkbänke, keine Fließbandarbeit</span></div>
           <div class="auf" style="--verzoegerung:200ms"><span class="leiste__wert blau zahl">0 €</span><span class="leiste__name">für den Kostenvoranschlag</span></div>
         </div>
       </div>
@@ -185,7 +242,7 @@
 
     <section class="flaeche" aria-label="Kundenstimme">
       <figure class="stimme innen auf">
-        <blockquote class="stahl">„Die Taschenuhr meines Großvaters läuft wieder. Und ich weiß jetzt, warum sie stand.“</blockquote>
+        <blockquote class="stahl" data-woerter>„Die Taschenuhr meines Großvaters läuft wieder. Und ich weiß jetzt, warum sie stand.“</blockquote>
         <figcaption>Martina S., Peine — nach einer Restaurierung</figcaption>
       </figure>
     </section>
@@ -210,8 +267,8 @@
           </dl>
           <p style="margin-top:28px;font-size:var(--fs-lead);letter-spacing:-0.015em">Am Zeitweg 9<br>31224 Peine</p>
           <div class="held__knoepfe" style="justify-content:flex-start">
-            <a class="knopf knopf--blau" href="kontakt/#termin">Termin anfragen</a>
-            <a class="knopf knopf--leer" href="leistungen/">Preise ansehen</a>
+            <a class="knopf knopf--blau knopf--magnet" href="kontakt/#termin">Termin anfragen</a>
+            <a class="knopf knopf--leer knopf--magnet" href="leistungen/">Preise ansehen</a>
           </div>
         </div>
       </div>
@@ -229,12 +286,12 @@
           <li><a href="datenschutz/">Datenschutz</a></li>
         </ul>
       </div>
-      <p class="fuss__hinweis">Musterprojekt. Betrieb, Anschrift, Personen, Preise und Kundenstimme sind frei erfunden. Fotos: Unsplash, 3D-Modell: eigene Arbeit in Blender.</p>
+      <p class="fuss__hinweis">Musterprojekt. Betrieb, Anschrift, Personen, Preise und Kundenstimme sind frei erfunden. Fotos: Unsplash. Die Uhr ist in Blender modelliert, Oberflächen und Schliffe entstehen im Browser.</p>
     </div>
   </footer>
 
   <script src="daten/inhalte.js" defer></script>
   <script src="assets/js/bewegung.js" defer></script>
-  <script type="module" src="assets/js/uhr.js"></script>
+  <script type="module" src="assets/js/uhr/seite.js"></script>
 </body>
 </html>

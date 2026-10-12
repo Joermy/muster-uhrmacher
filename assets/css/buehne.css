@@ -1,0 +1,736 @@
+/* ---------------------------------------------------------------- Lader */
+
+.lader {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  background: #000;
+  clip-path: circle(150% at 50% 50%);
+  transition: clip-path 1.2s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s ease 0.6s;
+  --fortschritt: 0;
+}
+
+.lader[data-fertig] {
+  clip-path: circle(0% at 50% 50%);
+  pointer-events: none;
+}
+
+html:not(.js) .lader {
+  display: none;
+}
+
+.lader__inhalt {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  transition: transform 1s var(--kurve), opacity 0.6s ease;
+}
+
+.lader[data-fertig] .lader__inhalt {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+.lader__ring {
+  width: min(42vmin, 220px);
+  height: auto;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.lader__spur,
+.lader__lauf {
+  fill: none;
+  stroke-width: 0.8;
+}
+
+.lader__spur {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.lader__lauf {
+  stroke: var(--akzent);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--fortschritt) * 100);
+  filter: drop-shadow(0 0 6px rgba(91, 155, 255, 0.8));
+}
+
+.lader__marke {
+  position: absolute;
+  top: calc(min(42vmin, 220px) / 2);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.lader__zeile {
+  display: flex;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--leise);
+}
+
+.lader__zahl {
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------- Buehne */
+
+.buehne {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  height: 100lvh;
+}
+
+.buehne__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100lvh;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+html.uhr-laeuft .buehne__canvas {
+  opacity: 1;
+}
+
+html.uhr-verdeckt .buehne {
+  visibility: hidden;
+}
+
+.buehne__still {
+  position: absolute;
+  right: 6vw;
+  top: 50%;
+  width: min(42vw, 560px);
+  height: auto;
+  transform: translateY(-50%);
+  opacity: 0.95;
+}
+
+html.uhr-laeuft .buehne__still {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .buehne__still {
+    right: auto;
+    left: 50%;
+    top: 68%;
+    width: 84vw;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ------------------------------------------------------------- Startbild */
+
+.held {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  padding-top: calc(52px + 4vh);
+  padding-bottom: 28px;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.held:active {
+  cursor: grabbing;
+}
+
+.held__text {
+  max-width: 600px;
+  cursor: auto;
+}
+
+.held__etikett {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.punkt {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--akzent);
+  box-shadow: 0 0 10px var(--akzent);
+}
+
+.held__titel {
+  margin-top: 22px;
+  font-size: clamp(3.4rem, 1.5rem + 6.6vw, 8.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+  max-width: 9ch;
+  background: var(--stahl);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.held__titel .wort {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.held__titel .zeichen {
+  display: inline-block;
+  background: var(--stahl);
+  background-size: 100% 1.05em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.held__lead {
+  max-width: 34ch;
+  margin-top: 26px;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}
+
+.held .held__knoepfe {
+  justify-content: flex-start;
+  margin-top: 34px;
+}
+
+.held__fuss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--leise);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.held__uhrzeit {
+  color: var(--muted);
+}
+
+.held__kaliber {
+  margin-left: auto;
+}
+
+.held__hinweis {
+  position: absolute;
+  right: var(--rand);
+  bottom: 84px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--leise);
+}
+
+.held__hinweis-linie {
+  width: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--leise));
+}
+
+@media (max-width: 760px) {
+  .held {
+    align-items: start;
+    padding-top: calc(52px + 5vh);
+    min-height: 100svh;
+  }
+  .held__titel {
+    font-size: clamp(3rem, 1rem + 10vw, 4.4rem);
+    max-width: 8ch;
+  }
+  .held__lead {
+    font-size: 1.0625rem;
+    margin-top: 18px;
+  }
+  .held .held__knoepfe {
+    margin-top: 22px;
+  }
+  .held {
+    grid-template-rows: auto auto 1fr;
+  }
+  .held__fuss {
+    margin-top: 18px;
+  }
+  .held__fuss > span:not(.status) {
+    display: none;
+  }
+  .held__hinweis {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------- Revision */
+
+.revision {
+  position: relative;
+}
+
+/* Ohne 3D: Kapitel als normale Liste */
+.revision__kopf {
+  padding-block: clamp(96px, 14vw, 160px) 40px;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  text-align: center;
+}
+
+.revision__kopf h2 {
+  max-width: 15ch;
+  font-size: var(--fs-h2);
+}
+
+.revision__kopf p:not(.etikett) {
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+}
+
+.kapitel {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 var(--rand);
+  display: grid;
+  gap: 18px;
+}
+
+.kapitel__text {
+  max-width: 440px;
+  padding: 28px;
+  border-radius: var(--radius-klein);
+  background: rgba(10, 10, 12, 0.62);
+  border: 1px solid var(--linie);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+.kapitel__nr {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.kapitel__nr b {
+  font-weight: 500;
+  color: var(--akzent);
+  font-size: 0.875rem;
+}
+
+.kapitel__text h3 {
+  font-size: clamp(1.75rem, 1.2rem + 1.7vw, 2.75rem);
+}
+
+.kapitel__text p {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.beschriftungen,
+.zeitlupe,
+.revision__leiste,
+.revision__schluss {
+  display: none;
+}
+
+/* Mit 3D: eine lange Strecke, Buehne klebt am Bildschirm */
+html.uhr-laeuft .revision {
+  height: 860vh;
+}
+
+html.uhr-laeuft .revision__buehne {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+html.uhr-laeuft .revision__kopf {
+  position: absolute;
+  inset: 0;
+  align-content: start;
+  padding-top: calc(52px + 7vh);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+html.uhr-laeuft .kapitel {
+  position: absolute;
+  inset: 0;
+  display: block;
+  max-width: var(--breite);
+  pointer-events: none;
+}
+
+html.uhr-laeuft .kapitel__eintrag {
+  position: absolute;
+  top: 50%;
+  left: var(--rand);
+  right: var(--rand);
+  display: flex;
+  transform: translateY(-50%);
+  opacity: var(--sicht, 0);
+  visibility: hidden;
+}
+
+html.uhr-laeuft .kapitel__eintrag[data-seite="rechts"] {
+  justify-content: flex-end;
+}
+
+html.uhr-laeuft .kapitel__text {
+  pointer-events: auto;
+  transform: translate3d(0, calc((1 - var(--sicht, 0)) * 40px), 0) scale(calc(0.97 + var(--sicht, 0) * 0.03));
+  transition: none;
+}
+
+html.uhr-laeuft .kapitel__text h3,
+html.uhr-laeuft .kapitel__text p,
+html.uhr-laeuft .kapitel__nr {
+  transform: translate3d(0, calc((1 - var(--sicht, 0)) * 18px), 0);
+}
+
+html.uhr-laeuft .kapitel__text p {
+  transform: translate3d(0, calc((1 - var(--sicht, 0)) * 28px), 0);
+}
+
+@media (max-width: 760px) {
+  html.uhr-laeuft .kapitel__eintrag {
+    top: auto;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    transform: none;
+    left: 14px;
+    right: 14px;
+  }
+  html.uhr-laeuft .kapitel__eintrag[data-seite="rechts"] {
+    justify-content: flex-start;
+  }
+  .kapitel__text {
+    padding: 20px 20px 22px;
+    max-width: none;
+    width: 100%;
+  }
+  .kapitel__text h3 {
+    font-size: 1.625rem;
+  }
+  .kapitel__text p {
+    font-size: 0.9375rem;
+    margin-top: 8px;
+  }
+  .kapitel__nr {
+    margin-bottom: 10px;
+  }
+}
+
+/* Beschriftungen an den Teilen */
+html.uhr-laeuft .beschriftungen {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.beschriftung {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.beschriftung i {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(91, 155, 255, 0.35);
+  box-shadow: 0 0 0 6px rgba(91, 155, 255, 0.12);
+}
+
+.beschriftung i::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 4px;
+  width: 54px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.15));
+  transform-origin: 0 50%;
+  transform: rotate(-28deg);
+}
+
+.beschriftung span {
+  position: absolute;
+  left: 58px;
+  bottom: 22px;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9);
+}
+
+.beschriftung small {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.beschriftung--links i::after {
+  left: auto;
+  right: 9px;
+  transform-origin: 100% 50%;
+  transform: rotate(28deg);
+}
+
+.beschriftung--links span {
+  left: auto;
+  right: 58px;
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .beschriftung span {
+    font-size: 0.75rem;
+    left: 40px;
+    bottom: 14px;
+  }
+  .beschriftung--links span {
+    right: 40px;
+  }
+  .beschriftung i::after {
+    width: 36px;
+  }
+  .beschriftung small,
+  .beschriftung--links {
+    display: none;
+  }
+}
+
+/* Zeitwaage */
+.zeitwaage {
+  display: none;
+}
+
+html.uhr-laeuft .zeitwaage {
+  display: block;
+  margin-top: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--linie);
+  background: rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.zeitwaage canvas {
+  display: block;
+  width: 100%;
+  height: 120px;
+}
+
+.zeitwaage dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--linie);
+}
+
+.zeitwaage dl > div {
+  padding: 10px 12px;
+}
+
+.zeitwaage dl > div + div {
+  border-left: 1px solid var(--linie);
+}
+
+.zeitwaage dt {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leise);
+}
+
+.zeitwaage dd {
+  margin: 2px 0 0;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .zeitwaage canvas {
+    height: 64px;
+  }
+  html.uhr-laeuft .zeitwaage {
+    margin-top: 12px;
+  }
+  .zeitwaage dd {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Zeitlupe */
+html.uhr-laeuft .zeitlupe {
+  display: inline-flex;
+  position: absolute;
+  top: calc(52px + 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--linie);
+  background: rgba(10, 10, 12, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+}
+
+.zeitlupe span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+  animation: puls 1.6s ease-in-out infinite;
+}
+
+@keyframes puls {
+  50% { opacity: 0.3; }
+}
+
+/* Fortschritt durch die Kapitel */
+html.uhr-laeuft .revision__leiste {
+  display: block;
+  position: absolute;
+  left: var(--rand);
+  right: var(--rand);
+  bottom: 26px;
+  max-width: 520px;
+  margin-inline: auto;
+  opacity: 0;
+}
+
+.revision__lauf {
+  display: block;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  position: relative;
+}
+
+.revision__lauf::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--akzent-tief), var(--akzent));
+  transform-origin: 0 50%;
+  transform: scaleX(var(--lauf, 0));
+  box-shadow: 0 0 10px rgba(91, 155, 255, 0.7);
+}
+
+.revision__leiste ol {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leise);
+}
+
+@media (max-width: 760px) {
+  html.uhr-laeuft .revision__leiste {
+    display: none;
+  }
+}
+
+/* Schluss */
+html.uhr-laeuft .revision__schluss {
+  display: grid;
+  position: absolute;
+  inset: calc(52px + 6vh) 0 auto 0;
+  justify-items: center;
+  text-align: center;
+  gap: 12px;
+  opacity: var(--sicht, 0);
+  transform: translate3d(0, calc((1 - var(--sicht, 0)) * 30px), 0);
+  pointer-events: none;
+}
+
+.revision__schluss h2 {
+  font-size: var(--fs-h2);
+  background: var(--stahl);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.revision__daten {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 760px) {
+  html.uhr-laeuft .revision__schluss {
+    inset: calc(52px + 4vh) 0 auto 0;
+  }
+}
+
+/* Magnetische Knoepfe brauchen eine weiche Rueckkehr */
+.knopf--magnet {
+  will-change: transform;
+}
+
+/* Bewegung reduziert: keine lange Strecke */
+@media (prefers-reduced-motion: reduce) {
+  html.uhr-laeuft .revision {
+    height: 600vh;
+  }
+}
